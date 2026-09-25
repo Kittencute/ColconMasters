@@ -1,0 +1,727 @@
+<?xml version="1.0" ?>
+<sdf version="1.8">
+  <model name="turtlebot3_burger">
+
+    <pose>0 0 0 0 0 0</pose>
+
+    <link name="base_footprint"/>
+
+    <link name="base_link">
+
+      <inertial>
+        <pose>-0.064 0 0.070 0 0 0</pose>
+        <inertia>
+          <ixx>1.9527e-02</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1.9527e-02</iyy>
+          <iyz>0</iyz>
+          <izz>1.9527e-02</izz>
+        </inertia>
+        <mass>8.2573504e-01</mass>
+      </inertial>
+
+      <collision name="base_collision">
+        <pose>-0.032 0 0.070 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.14 0.14 0.14</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="base_visual">
+        <pose>-0.032 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://turtlebot3_common/meshes/bases/burger_base.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.3 0.3 0.3 1.0</ambient>
+          <diffuse>0.3 0.3 0.3 1.0</diffuse>
+        </material>
+      </visual>
+
+    </link>
+
+
+    <link name="imu_link">
+      <pose relative_to="base_link">-0.032 0 0.1 0 0 0</pose>
+      <inertial>
+        <mass>0.0177</mass>
+        <inertia>
+          <ixx>0.00000214</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00000213</iyy>
+          <iyz>0</iyz>
+          <izz>0.00000392</izz>
+        </inertia>
+      </inertial>
+
+      <visual name="imu_body_visual">
+        <pose>0 0 0 0 0 0</pose>
+
+        <geometry>
+          <box>
+            <size>0.0362 0.0366 0.0102</size>
+          </box>
+        </geometry>
+
+        <material>
+          <ambient>0.15 0.15 0.15 1</ambient>
+          <diffuse>0.15 0.15 0.15 1</diffuse>
+        </material>
+      </visual>
+
+      <collision name="3dm_imu_collision">
+        <geometry>
+          <box>
+            <size>0.0362 0.0366 0.0102</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <sensor name="3dm_imu_sensor" type="imu">
+
+        <always_on>true</always_on>
+        <update_rate>200</update_rate>
+
+        <topic>imu</topic>
+
+        <gz_frame_id>imu_link</gz_frame_id>
+
+        <imu>
+
+          <angular_velocity>
+
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </x>
+
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </y>
+
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>2e-4</stddev>
+              </noise>
+            </z>
+
+          </angular_velocity>
+
+          <linear_acceleration>
+
+            <x>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.003</stddev>
+              </noise>
+            </x>
+
+            <y>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.003</stddev>
+              </noise>
+            </y>
+
+            <z>
+              <noise type="gaussian">
+                <mean>0.0</mean>
+                <stddev>0.003</stddev>
+              </noise>
+            </z>
+
+          </linear_acceleration>
+
+        </imu>
+
+      </sensor>
+
+    </link>
+
+
+    <link name="base_scan">
+      <pose relative_to="base_link">-0.032 0 0.14 0 0 0</pose>
+      <inertial>
+        <mass>0.265</mass>
+        <inertia>
+          <ixx>0.0001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0001</iyy>
+          <iyz>0</iyz>
+          <izz>0.0001</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="livox_collision">
+        <geometry>
+          <cylinder>
+            <radius>0.0325</radius>
+            <length>0.060</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="livox_lower_body">
+        <pose>0 0 0.012 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.0325</radius>
+            <length>0.024</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.10 0.10 0.10 1</ambient>
+          <diffuse>0.10 0.10 0.10 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="livox_middle_body">
+        <pose>0 0 0.032 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.028</radius>
+            <length>0.016</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.16 0.16 0.16 1</ambient>
+          <diffuse>0.16 0.16 0.16 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="livox_scanner_body">
+        <pose>0 0 0.046 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.024</radius>
+            <length>0.012</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.08 0.08 0.08 1</ambient>
+          <diffuse>0.08 0.08 0.08 1</diffuse>
+        </material>
+      </visual>
+
+      <sensor name="livox_sensor" type="gpu_lidar">
+
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+
+        <update_rate>10</update_rate>
+
+        <topic>scan</topic>
+
+        <gz_frame_id>base_scan</gz_frame_id>
+
+        <lidar>
+
+          <scan>
+
+            <horizontal>
+              <samples>720</samples>
+              <resolution>1.0</resolution>
+              <min_angle>-3.14159265</min_angle>
+              <max_angle>3.14159265</max_angle>
+            </horizontal>
+            
+            <vertical>
+              <samples>32</samples>
+              <resolution>1.0</resolution>
+              <min_angle>-0.122173</min_angle>
+              <max_angle>0.907571</max_angle>
+            </vertical>
+          </scan>
+
+          <range>
+            <min>0.10</min>
+            <max>40.0</max>
+            <resolution>0.01</resolution>
+          </range>
+
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.02</stddev>
+          </noise>
+
+        </lidar>
+
+      </sensor>
+
+    </link>
+
+
+    <link name="wheel_left_link">
+
+      <inertial>
+        <pose>0 0.08 0.023 -1.57 0 0</pose>
+
+        <inertia>
+          <ixx>5.445e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>5.445e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1.089e-04</izz>
+        </inertia>
+
+        <mass>0.1</mass>
+      </inertial>
+
+      <collision name="wheel_left_collision">
+
+        <pose>0 0.08 0.023 -1.57 0 0</pose>
+
+        <geometry>
+          <cylinder>
+            <radius>0.033</radius>
+            <length>0.018</length>
+          </cylinder>
+        </geometry>
+
+        <surface>
+
+          <friction>
+            <ode>
+              <mu>100000.0</mu>
+              <mu2>100000.0</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0.0</slip1>
+              <slip2>0.0</slip2>
+            </ode>
+          </friction>
+
+          <contact>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+5</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+
+        </surface>
+
+      </collision>
+
+      <visual name="wheel_left_visual">
+
+        <pose>0 0.08 0.023 0 0 0</pose>
+
+        <geometry>
+          <mesh>
+            <uri>model://turtlebot3_common/meshes/wheels/left_tire.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+
+        <material>
+          <ambient>0.2 0.2 0.2 1.0</ambient>
+          <diffuse>0.2 0.2 0.2 1.0</diffuse>
+        </material>
+
+      </visual>
+
+    </link>
+
+
+    <link name="wheel_right_link">
+
+      <inertial>
+
+        <pose>0 -0.08 0.023 -1.57 0 0</pose>
+
+        <inertia>
+          <ixx>5.445e-05</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>5.445e-05</iyy>
+          <iyz>0</iyz>
+          <izz>1.089e-04</izz>
+        </inertia>
+
+        <mass>0.1</mass>
+
+      </inertial>
+
+      <collision name="wheel_right_collision">
+
+        <pose>0 -0.08 0.023 -1.57 0 0</pose>
+
+        <geometry>
+          <cylinder>
+            <radius>0.033</radius>
+            <length>0.018</length>
+          </cylinder>
+        </geometry>
+
+        <surface>
+
+          <friction>
+            <ode>
+              <mu>100000.0</mu>
+              <mu2>100000.0</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0.0</slip1>
+              <slip2>0.0</slip2>
+            </ode>
+          </friction>
+
+          <contact>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+5</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+
+        </surface>
+
+      </collision>
+
+      <visual name="wheel_right_visual">
+
+        <pose>0 -0.08 0.023 0 0 0</pose>
+
+        <geometry>
+          <mesh>
+            <uri>model://turtlebot3_common/meshes/wheels/right_tire.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+
+        <material>
+          <ambient>0.2 0.2 0.2 1.0</ambient>
+          <diffuse>0.2 0.2 0.2 1.0</diffuse>
+        </material>
+
+      </visual>
+
+    </link>
+
+
+    <link name="caster_back_link">
+
+      <pose>-0.081 0 -0.004 -1.57 0 0</pose>
+
+      <inertial>
+
+        <mass>0.005</mass>
+
+        <inertia>
+          <ixx>0.00001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00001</iyy>
+          <iyz>0</iyz>
+          <izz>0.00001</izz>
+        </inertia>
+
+      </inertial>
+
+      <collision name="collision">
+
+        <geometry>
+          <sphere>
+            <radius>0.005</radius>
+          </sphere>
+        </geometry>
+
+        <surface>
+          <contact>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+5</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+        </surface>
+
+      </collision>
+
+    </link>
+
+
+    <link name="camera_link">
+      <pose relative_to="base_link"> 0 0 0.12 0 0 1.5708</pose>
+      <visual name="oakd_body_visual">
+        <geometry>
+          <box>
+            <size>0.100 0.030 0.025</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.12 0.12 0.12 1</ambient>
+          <diffuse>0.12 0.12 0.12 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="oakd_left_lens_visual">
+        <pose>0.035 -0.016 0 1.5708 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.008</radius>
+            <length>0.004</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.02 0.02 0.02 1</ambient>
+          <diffuse>0.02 0.02 0.02 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="oakd_center_lens_visual">
+        <pose>0 -0.016 0 1.5708 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.007</radius>
+            <length>0.004</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.02 0.02 0.02 1</ambient>
+          <diffuse>0.02 0.02 0.02 1</diffuse>
+        </material>
+      </visual>
+
+      <visual name="oakd_right_lens_visual">
+        <pose>-0.035 -0.016 0 1.5708 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.008</radius>
+            <length>0.004</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.02 0.02 0.02 1</ambient>
+          <diffuse>0.02 0.02 0.02 1</diffuse>
+        </material>
+      </visual>
+
+      <collision name="oakd_collision">
+        <geometry>
+          <box>
+            <size>0.030 0.098 0.025</size>
+          </box>
+        </geometry>
+      </collision>
+
+
+      <sensor name="oakd_rgb" type="camera">
+
+        <always_on>true</always_on>
+        <visualize>true</visualize>
+
+        <update_rate>5</update_rate>
+
+        <topic>oakd/rgb/image_raw</topic>
+
+        <gz_frame_id>oakd_rgb_optical_frame</gz_frame_id>
+
+        <pose>0 0 0 0 0 -1.5708</pose>
+
+        <camera>
+
+          <camera_info_topic>
+            oakd/rgb/camera_info
+          </camera_info_topic>
+
+          <horizontal_fov>1.20</horizontal_fov>
+
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+
+          <clip>
+            <near>0.05</near>
+            <far>100.0</far>
+          </clip>
+
+        </camera>
+
+      </sensor>
+
+
+      <sensor name="oakd_depth" type="depth_camera">
+
+        <always_on>true</always_on>
+        <visualize>false</visualize>
+
+        <update_rate>5</update_rate>
+
+        <topic>oakd/depth/image_raw</topic>
+
+        <gz_frame_id>oakd_depth_optical_frame</gz_frame_id>
+
+        <pose>0 0 0 0 0 -1.5708</pose>
+
+        <camera>
+
+          <camera_info_topic>
+            oakd/depth/camera_info
+          </camera_info_topic>
+
+          <horizontal_fov>1.20</horizontal_fov>
+
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R_FLOAT32</format>
+          </image>
+
+          <clip>
+            <near>0.20</near>
+            <far>30.0</far>
+          </clip>
+
+        </camera>
+
+      </sensor>
+
+    </link>
+
+
+    <joint name="base_joint" type="fixed">
+      <parent>base_footprint</parent>
+      <child>base_link</child>
+      <pose>0 0 0.010 0 0 0</pose>
+    </joint>
+
+
+    <joint name="wheel_left_joint" type="revolute">
+
+      <parent>base_link</parent>
+      <child>wheel_left_link</child>
+
+      <pose>0 0.08 0.023 -1.57 0 0</pose>
+
+      <axis>
+        <xyz>0 0 1</xyz>
+
+        <limit>
+          <effort>20</effort>
+        </limit>
+
+      </axis>
+
+    </joint>
+
+
+    <joint name="wheel_right_joint" type="revolute">
+
+      <parent>base_link</parent>
+      <child>wheel_right_link</child>
+
+      <pose>0 -0.08 0.023 -1.57 0 0</pose>
+
+      <axis>
+
+        <xyz>0 0 1</xyz>
+
+        <limit>
+          <effort>20</effort>
+        </limit>
+
+      </axis>
+
+    </joint>
+
+
+    <joint name="caster_back_joint" type="ball">
+      <parent>base_link</parent>
+      <child>caster_back_link</child>
+    </joint>
+
+
+    <joint name="3dm_imu_joint" type="fixed">
+
+      <parent>base_link</parent>
+      <child>imu_link</child>
+
+      <pose>-0.032 0 1 0 0 0</pose>
+
+    </joint>
+
+
+    <joint name="livox_joint" type="fixed">
+
+      <parent>base_link</parent>
+      <child>base_scan</child>
+
+      <pose>-0.032 0 0.5 0 0 0</pose>
+
+    </joint>
+
+
+    <joint name="oakd_joint" type="fixed">
+
+      <parent>base_link</parent>
+      <child>camera_link</child>
+      <pose>0 0 0.10 0 0 0</pose>
+    </joint>
+
+
+    <plugin
+      filename="gz-sim-diff-drive-system"
+      name="gz::sim::systems::DiffDrive">
+
+      <left_joint>wheel_left_joint</left_joint>
+      <right_joint>wheel_right_joint</right_joint>
+
+      <wheel_separation>0.160</wheel_separation>
+      <wheel_radius>0.033</wheel_radius>
+
+      <max_linear_acceleration>1.0</max_linear_acceleration>
+
+      <topic>cmd_vel</topic>
+
+      <odom_topic>odom</odom_topic>
+
+      <frame_id>odom</frame_id>
+      <child_frame_id>base_footprint</child_frame_id>
+
+      <odom_publisher_frequency>30</odom_publisher_frequency>
+
+      <tf_topic>/tf</tf_topic>
+
+    </plugin>
+
+
+    <plugin
+      filename="gz-sim-joint-state-publisher-system"
+      name="gz::sim::systems::JointStatePublisher">
+
+      <topic>joint_states</topic>
+
+      <joint_name>wheel_left_joint</joint_name>
+      <joint_name>wheel_right_joint</joint_name>
+
+    </plugin>
+
+  </model>
+</sdf>
