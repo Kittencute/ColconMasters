@@ -64,6 +64,7 @@ setup(
 
     entry_points={
         'console_scripts': [
+            'keepout_zone = my_turtlebot3.keepout_zone:main',
         ],
     },
 )
